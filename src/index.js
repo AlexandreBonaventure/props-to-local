@@ -22,10 +22,10 @@ export default (props, options = defaultOptions) => {
       };
     },
     created() {
-      each(props, ({ formatter = defaultFormatter }, propName) => {
+      each(props, ({ formatter = defaultFormatter, deep = false }, propName) => {
         this.$watch(propName, (value) => {
           this[options.localName][propName] = formatter(value);
-        });
+        }, { deep });
       });
     },
   }
